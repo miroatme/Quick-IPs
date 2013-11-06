@@ -1,0 +1,18 @@
+#!/bin/sh
+function lan_ip (){
+	ifconfig | grep -E '\.?[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' |\
+	grep -v '127.0.0.1' |\
+	awk '{print $2}'
+}
+function wan_ip (){
+	curl -s ip.appspot.com
+}
+function lan (){
+	for i in `lan_ip`; do
+		printf "\t%s\n" % $i
+	done
+}
+main (){
+	printf "LAN:\n%s\nWAN:\n\t%s" % (lan, wan_ip)
+}
+main	
