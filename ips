@@ -9,7 +9,7 @@ function wan_ip () {
 }
 function lan () {
 	for i in `lan_ip`; do
-		printf "\t%s\n" % $i
+		printf "\t%s\n" $i
 	done
 }
 main () {
